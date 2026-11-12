@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS pegawai (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nip VARCHAR(30) NOT NULL UNIQUE,
     nama VARCHAR(100) NOT NULL,
-    jabatan VARCHAR(100) NOT NULL,
     departemen VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     no_hp VARCHAR(20) NOT NULL,
@@ -25,7 +24,7 @@ INSERT IGNORE INTO users (username, password, nama_lengkap) VALUES
 ('admin', '$2y$10$LOX7fKM14/uyNlaNRUpXpOTIDSZnccngBopbrhRXnEMhGFw.Cpv5O', 'Administrator');
 
 -- Contoh data pegawai awal
-INSERT IGNORE INTO pegawai (nip, nama, jabatan, departemen, email, no_hp, tanggal_masuk) VALUES
-('19900101001', 'Budi Santoso', 'Staff IT', 'Teknologi Informasi', 'budi.santoso@kantor.id', '081234567890', '2022-03-15'),
-('19920512002', 'Siti Rahmawati', 'HRD Specialist', 'Sumber Daya Manusia', 'siti.rahma@kantor.id', '081345678901', '2023-01-10'),
-('19950820003', 'Andi Wijaya', 'Staff Keuangan', 'Keuangan', 'andi.wijaya@kantor.id', '081567890123', '2024-06-01');
+INSERT IGNORE INTO pegawai (nip, nama, departemen, email, no_hp, tanggal_masuk) VALUES
+('19900101001', 'Budi Santoso', 'Teknologi Informasi', 'budi.santoso@kantor.id', '081234567890', '2022-03-15'),
+('19920512002', 'Siti Rahmawati', 'Sumber Daya Manusia', 'siti.rahma@kantor.id', '081345678901', '2023-01-10'),
+('19950820003', 'Andi Wijaya', 'Keuangan', 'andi.wijaya@kantor.id', '081567890123', '2024-06-01');

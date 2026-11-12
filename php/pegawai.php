@@ -9,6 +9,14 @@ requireLogin();
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
+const ALLOWED_DEPARTEMEN = [
+    'Teknologi Informasi',
+    'Sumber Daya Manusia',
+    'Keuangan',
+    'Operasional',
+    'Pemasaran',
+];
+
 /**
  * Mengambil dan memvalidasi input form pegawai dari POST.
  */
@@ -17,7 +25,6 @@ function getValidatedInput(): array
     $data = [
         'nip'           => trim($_POST['nip'] ?? ''),
         'nama'          => trim($_POST['nama'] ?? ''),
-        'jabatan'       => trim($_POST['jabatan'] ?? ''),
         'departemen'    => trim($_POST['departemen'] ?? ''),
         'email'         => trim($_POST['email'] ?? ''),
         'no_hp'         => trim($_POST['no_hp'] ?? ''),
@@ -30,6 +37,10 @@ function getValidatedInput(): array
         }
     }
 
+    if (!in_array($data['departemen'], ALLOWED_DEPARTEMEN, true)) {
+        jsonResponse(false, 'Pilihan departemen tidak valid.', null, 400);
+    }
+
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         jsonResponse(false, 'Format email tidak valid.', null, 400);
     }
@@ -40,13 +51,11 @@ function getValidatedInput(): array
 switch ($action) {
     case 'summary':
         $totalPegawai = (int) $pdo->query('SELECT COUNT(*) FROM pegawai')->fetchColumn();
-        $totalDepartemen = (int) $pdo->query('SELECT COUNT(DISTINCT departemen) FROM pegawai')->fetchColumn();
-        $terbaru = $pdo->query('SELECT id, nip, nama, jabatan, departemen FROM pegawai ORDER BY id DESC LIMIT 5')->fetchAll();
+        $terbaru = $pdo->query('SELECT id, nip, nama, departemen FROM pegawai ORDER BY id DESC LIMIT 5')->fetchAll();
 
         jsonResponse(true, 'Data ringkasan berhasil dimuat.', [
-            'total_pegawai'    => $totalPegawai,
-            'total_departemen' => $totalDepartemen,
-            'terbaru'          => $terbaru,
+            'total_pegawai' => $totalPegawai,
+            'terbaru'       => $terbaru,
         ]);
         break;
 
@@ -56,10 +65,10 @@ switch ($action) {
             $like = "%{$q}%";
             $stmt = $pdo->prepare('
                 SELECT * FROM pegawai
-                WHERE nip LIKE ? OR nama LIKE ? OR jabatan LIKE ? OR departemen LIKE ?
+                WHERE nip LIKE ? OR nama LIKE ? OR departemen LIKE ?
                 ORDER BY id DESC
             ');
-            $stmt->execute([$like, $like, $like, $like]);
+            $stmt->execute([$like, $like, $like]);
         } else {
             $stmt = $pdo->query('SELECT * FROM pegawai ORDER BY id DESC');
         }
@@ -94,8 +103,8 @@ switch ($action) {
         }
 
         $stmt = $pdo->prepare('
-            INSERT INTO pegawai (nip, nama, jabatan, departemen, email, no_hp, tanggal_masuk)
-            VALUES (:nip, :nama, :jabatan, :departemen, :email, :no_hp, :tanggal_masuk)
+            INSERT INTO pegawai (nip, nama, departemen, email, no_hp, tanggal_masuk)
+            VALUES (:nip, :nama, :departemen, :email, :no_hp, :tanggal_masuk)
         ');
         $stmt->execute($input);
 
@@ -121,7 +130,6 @@ switch ($action) {
             UPDATE pegawai
             SET nip = :nip,
                 nama = :nama,
-                jabatan = :jabatan,
                 departemen = :departemen,
                 email = :email,
                 no_hp = :no_hp,

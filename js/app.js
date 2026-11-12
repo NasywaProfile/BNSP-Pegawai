@@ -133,13 +133,12 @@ function initDashboard() {
         success: function (res) {
             if (!res.status) return;
             $('#totalPegawai').text(res.data.total_pegawai);
-            $('#totalDepartemen').text(res.data.total_departemen);
 
             const tbody = $('#tabelTerbaru');
             tbody.empty();
 
             if (res.data.terbaru.length === 0) {
-                tbody.append('<tr><td colspan="4" class="text-center text-muted">Belum ada data pegawai.</td></tr>');
+                tbody.append('<tr><td colspan="3" class="text-center text-muted">Belum ada data pegawai.</td></tr>');
                 return;
             }
 
@@ -148,7 +147,6 @@ function initDashboard() {
                     <tr>
                         <td>${escapeHtml(item.nip)}</td>
                         <td><a href="detail_pegawai.html?id=${item.id}" class="text-decoration-none">${escapeHtml(item.nama)}</a></td>
-                        <td>${escapeHtml(item.jabatan)}</td>
                         <td>${escapeHtml(item.departemen)}</td>
                     </tr>
                 `);
@@ -172,7 +170,7 @@ function initDaftarPegawai() {
                 tbody.empty();
 
                 if (!res.status || res.data.length === 0) {
-                    tbody.append('<tr><td colspan="6" class="text-center text-muted">Data pegawai tidak ditemukan.</td></tr>');
+                    tbody.append('<tr><td colspan="5" class="text-center text-muted">Data pegawai tidak ditemukan.</td></tr>');
                     return;
                 }
 
@@ -182,7 +180,6 @@ function initDaftarPegawai() {
                             <td>${index + 1}</td>
                             <td>${escapeHtml(p.nip)}</td>
                             <td>${escapeHtml(p.nama)}</td>
-                            <td>${escapeHtml(p.jabatan)}</td>
                             <td>${escapeHtml(p.departemen)}</td>
                             <td class="text-nowrap">
                                 <a href="detail_pegawai.html?id=${p.id}" class="btn btn-sm btn-outline-secondary">Detail</a>
@@ -259,7 +256,6 @@ function initFormPegawai() {
                 const p = res.data;
                 $('#nip').val(p.nip);
                 $('#nama').val(p.nama);
-                $('#jabatan').val(p.jabatan);
                 $('#departemen').val(p.departemen);
                 $('#email').val(p.email);
                 $('#no_hp').val(p.no_hp);
@@ -278,7 +274,6 @@ function initFormPegawai() {
             id: $('#id').val(),
             nip: $('#nip').val().trim(),
             nama: $('#nama').val().trim(),
-            jabatan: $('#jabatan').val().trim(),
             departemen: $('#departemen').val().trim(),
             email: $('#email').val().trim(),
             no_hp: $('#no_hp').val().trim(),
@@ -286,7 +281,7 @@ function initFormPegawai() {
         };
 
         // Validasi form menggunakan JavaScript
-        if (!payload.nip || !payload.nama || !payload.jabatan || !payload.departemen || !payload.email || !payload.no_hp || !payload.tanggal_masuk) {
+        if (!payload.nip || !payload.nama || !payload.departemen || !payload.email || !payload.no_hp || !payload.tanggal_masuk) {
             showAlert('#alertBox', 'Semua field wajib diisi.', 'warning');
             return;
         }
@@ -352,7 +347,6 @@ function initDetailPegawai() {
             const p = res.data;
             $('#detailNip').text(p.nip);
             $('#detailNama').text(p.nama);
-            $('#detailJabatan').text(p.jabatan);
             $('#detailDepartemen').text(p.departemen);
             $('#detailEmail').text(p.email);
             $('#detailNoHp').text(p.no_hp);
