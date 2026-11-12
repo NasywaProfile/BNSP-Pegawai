@@ -1,0 +1,75 @@
+/* Gaya tambahan sederhana agar tampilan pas satu layar desktop */
+
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Halaman login tepat di tengah satu layar penuh */
+body[data-page="login"] {
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Konten utama mengisi sisa tinggi layar di bawah navbar */
+main.page-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Tabel dengan scroll internal pada desktop agar halaman tidak terpotong */
+@media (min-width: 992px) {
+    .table-scroll-list {
+        max-height: calc(100vh - 230px);
+        overflow-y: auto;
+    }
+
+    .table-scroll-dashboard {
+        max-height: calc(100vh - 370px);
+        overflow-y: auto;
+    }
+}
+
+/* Animasi sederhana untuk konten halaman */
+.fade-in {
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Transisi halus untuk kartu dan tombol */
+.card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn {
+    transition: transform 0.15s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}

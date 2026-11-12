@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Aplikasi Data Pegawai</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-page="dashboard">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="dashboard.html">
+                <i class="bi bi-people-fill text-primary me-1"></i> Data Pegawai
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pegawai.html">Daftar Pegawai</a></li>
+                    <li class="nav-item"><a class="nav-link" href="form_pegawai.html">Tambah Pegawai</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-muted small"><i class="bi bi-person-circle me-1"></i><span id="namaUser">-</span></span>
+                    <button id="btnLogout" class="btn btn-sm btn-outline-danger">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-3 fade-in page-main">
+        <!-- Elemen multimedia (gambar & ikon) pada dashboard -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-body py-2 px-3 d-flex align-items-center gap-3 flex-wrap">
+                <img src="assets/pegawai.svg" alt="Ilustrasi Pegawai" width="56" height="56">
+                <div>
+                    <h6 class="mb-0 fw-semibold">Selamat Datang di Aplikasi Pencatatan Data Pegawai</h6>
+                    <p class="text-muted mb-0 small">Kelola data pegawai secara mudah: tambah, lihat, ubah, dan hapus data.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm card-hover">
+                    <div class="card-body py-2 px-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="text-muted small">Total Pegawai</div>
+                            <h4 class="mb-0" id="totalPegawai">0</h4>
+                        </div>
+                        <i class="bi bi-people fs-2 text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm card-hover">
+                    <div class="card-body py-2 px-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="text-muted small">Total Departemen</div>
+                            <h4 class="mb-0" id="totalDepartemen">0</h4>
+                        </div>
+                        <i class="bi bi-building fs-2 text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-semibold small">Pegawai Terbaru</span>
+                <a href="pegawai.html" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+            </div>
+            <div class="table-responsive table-scroll-dashboard">
+                <table class="table table-sm table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
+                            <th>Departemen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelTerbaru">
+                        <tr><td colspan="4" class="text-center text-muted">Memuat data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

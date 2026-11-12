@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pegawai - Aplikasi Data Pegawai</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body data-page="detail">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="dashboard.html">
+                <i class="bi bi-people-fill text-primary me-1"></i> Data Pegawai
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="pegawai.html">Daftar Pegawai</a></li>
+                    <li class="nav-item"><a class="nav-link" href="form_pegawai.html">Tambah Pegawai</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-muted small"><i class="bi bi-person-circle me-1"></i><span id="namaUser">-</span></span>
+                    <button id="btnLogout" class="btn btn-sm btn-outline-danger">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-3 fade-in page-main" style="max-width: 680px;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Detail Pegawai</h5>
+            <a href="pegawai.html" class="btn btn-sm btn-outline-secondary">Kembali</a>
+        </div>
+
+        <div id="alertBox"></div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-3">
+                <table class="table table-sm table-borderless mb-3">
+                    <tbody>
+                        <tr>
+                            <th class="text-muted" style="width: 160px;">NIP</th>
+                            <td id="detailNip">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Nama Lengkap</th>
+                            <td id="detailNama">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Jabatan</th>
+                            <td id="detailJabatan">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Departemen</th>
+                            <td id="detailDepartemen">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Email</th>
+                            <td id="detailEmail">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">No. HP</th>
+                            <td id="detailNoHp">-</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Tanggal Masuk</th>
+                            <td id="detailTanggalMasuk">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a id="btnEditDetail" href="pegawai.html" class="btn btn-primary btn-sm">
+                    <i class="bi bi-pencil-square me-1"></i> Edit Data
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
