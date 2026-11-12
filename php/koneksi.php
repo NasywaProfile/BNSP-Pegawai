@@ -22,11 +22,12 @@ try {
         ]
     );
 } catch (PDOException $e) {
+    error_log('Database connection error: ' . $e->getMessage());
     header('Content-Type: application/json; charset=utf-8');
     http_response_code(500);
     echo json_encode([
         'status' => false,
-        'message' => 'Koneksi database gagal: ' . $e->getMessage(),
+        'message' => 'Koneksi database gagal. Silakan periksa konfigurasi server atau database.',
     ]);
     exit;
 }
