@@ -266,7 +266,7 @@ function initFormPegawai() {
             }
         });
     }
-
+    /* 1 */
     $('#formPegawai').on('submit', function (e) {
         e.preventDefault();
 

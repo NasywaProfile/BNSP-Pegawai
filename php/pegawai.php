@@ -15,6 +15,8 @@ const ALLOWED_DEPARTEMEN = [
     'Keuangan',
     'Operasional',
     'Pemasaran',
+    'Media Sosial',
+
 ];
 
 /**
